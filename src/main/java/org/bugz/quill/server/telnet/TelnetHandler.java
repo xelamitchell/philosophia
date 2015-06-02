@@ -1,4 +1,4 @@
-package org.bugz.quill.telnet;
+package org.bugz.quill.server.telnet;
 
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandler.Sharable;

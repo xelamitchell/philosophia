@@ -1,6 +1,6 @@
-package org.bugz.quill.util.spring;
+package org.bugz.quill.server.spring;
 
-import org.bugz.quill.telnet.TelnetServer;
+import org.bugz.quill.server.telnet.TelnetServer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;

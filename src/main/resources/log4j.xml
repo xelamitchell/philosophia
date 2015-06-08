@@ -12,7 +12,7 @@
 	</appender>
 	
 	<!-- Application Loggers -->
-	<logger name="org.bugz.quill">
+	<logger name="org.bugz.philosophia">
 		<level value="debug" />
 	</logger>
 	

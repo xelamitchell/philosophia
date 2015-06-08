@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import org.apache.commons.collections4.CollectionUtils;
-import org.bugz.philosophia.character.Pc;
+import org.bugz.philosophia.form.Pc;
 
 /**
  * A MUD user.

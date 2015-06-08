@@ -1,4 +1,4 @@
-package org.bugz.philosophia.character;
+package org.bugz.philosophia.form;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

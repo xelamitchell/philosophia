@@ -1,4 +1,4 @@
-package org.bugz.quill;
+package org.bugz.philosophia;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -14,15 +14,15 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  * @author bugz
  */
 @Configuration
-@ComponentScan(basePackages = "org.bugz.quill")
+@ComponentScan(basePackages = "org.bugz.philosophia")
 @EnableAutoConfiguration
 @EnableTransactionManagement
-@EnableJpaRepositories("org.bugz.quill")
-@PropertySource(value = {"classpath:quill.properties"}, ignoreResourceNotFound = true)
-public class Quill {
+@EnableJpaRepositories("org.bugz.philosophia")
+@PropertySource(value = {"classpath:philosophia.properties"}, ignoreResourceNotFound = true)
+public class Philosophia {
 
     public static void main(String[] args) {
-        SpringApplication.run(Quill.class, args);
+        SpringApplication.run(Philosophia.class, args);
     }
     
 }

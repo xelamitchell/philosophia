@@ -1,4 +1,4 @@
-package org.bugz.quill.server.telnet;
+package org.bugz.philosophia.server.telnet;
 
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;

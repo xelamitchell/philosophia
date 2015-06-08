@@ -1,4 +1,4 @@
-package org.bugz.quill.server.telnet;
+package org.bugz.philosophia.server.telnet;
 
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandler.Sharable;
@@ -33,7 +33,7 @@ public class TelnetHandler extends SimpleChannelInboundHandler<String> {
             }
         }
         
-        incoming.writeAndFlush("Welcome to the Realms at " + InetAddress.getLocalHost().getHostAddress() + ".\n");
+        incoming.writeAndFlush("Welcome to Philosophia at " + InetAddress.getLocalHost().getHostAddress() + ".\n");
         channels.add(incoming);
         
     }

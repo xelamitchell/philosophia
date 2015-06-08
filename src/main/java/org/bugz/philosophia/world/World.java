@@ -1,4 +1,4 @@
-package org.bugz.quill.world;
+package org.bugz.philosophia.world;
 
 /**
  *

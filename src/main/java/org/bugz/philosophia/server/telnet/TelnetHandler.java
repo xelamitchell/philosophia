@@ -56,6 +56,8 @@ public class TelnetHandler extends SimpleChannelInboundHandler<String> {
     @Override
     protected void messageReceived(ChannelHandlerContext context, String message) throws Exception {
         
+        
+        
         Channel incoming = context.channel();
         for(Channel channel : channels) {
             

@@ -41,7 +41,7 @@ public class TelnetServer {
             bootstrap.group(producer, consumer)
                 .channel(NioServerSocketChannel.class)
                 .handler(new LoggingHandler(LogLevel.INFO))
-                .childHandler(new TelnetInitialiser(null));
+                .childHandler(new TelnetInitialiser());
         
             bootstrap.bind(port).sync().channel().closeFuture().sync();
         } catch (InterruptedException ie) {

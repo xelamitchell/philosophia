@@ -34,14 +34,14 @@ public class User implements Serializable {
     private String password;
     
     @Transient
-    private List<Pc> pcs;
+    private List<Pc> forms;
 
     protected User() {}
     
-    public User(String username, String password, List<Pc> pcs) {
+    public User(String username, String password, List<Pc> forms) {
         this.username = username;
         this.password = password;
-        this.pcs = (CollectionUtils.isNotEmpty(pcs)) ? pcs : new ArrayList<>(0);
+        this.forms = (CollectionUtils.isNotEmpty(forms)) ? forms : new ArrayList<>(0);
     }
     
     public Long getId() {
@@ -60,12 +60,20 @@ public class User implements Serializable {
         this.username = username;
     }
 
-    public List<Pc> getPcs() {
-        return pcs;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPcs(List<Pc> pcs) {
-        this.pcs = pcs;
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public List<Pc> getForms() {
+        return forms;
+    }
+
+    public void setForms(List<Pc> forms) {
+        this.forms = forms;
     }
     
 }

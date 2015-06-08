@@ -26,6 +26,10 @@ public class TelnetInitialiser extends ChannelInitializer<SocketChannel> {
         this.ssl = ssl;
     }
     
+    public TelnetInitialiser() {
+        this(null);
+    }
+    
     @Override
     protected void initChannel(SocketChannel channel) throws Exception {
         

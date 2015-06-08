@@ -1,4 +1,4 @@
-package org.bugz.philosophia.form.symbol;
+package org.bugz.philosophia.symbol;
 
 import java.util.List;
 

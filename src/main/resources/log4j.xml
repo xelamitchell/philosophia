@@ -17,6 +17,9 @@
 	</logger>
 	
 	<!-- 3rdparty Loggers -->
+	<logger name="io.netty">
+		<level value="info" />
+	</logger>
 
 	<!-- Root Logger -->
 	<root>

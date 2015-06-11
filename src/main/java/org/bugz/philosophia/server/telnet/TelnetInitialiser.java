@@ -8,26 +8,34 @@ import io.netty.handler.codec.Delimiters;
 import io.netty.handler.codec.string.StringDecoder;
 import io.netty.handler.codec.string.StringEncoder;
 import io.netty.handler.ssl.SslContext;
+import javax.inject.Inject;
+import org.bugz.philosophia.server.AuthenticationHandler;
+import org.springframework.stereotype.Component;
 
 /**
- *
+ * Initialises Telnet handling.
+ * 
  * @author bugz
  */
+@Component
 public class TelnetInitialiser extends ChannelInitializer<SocketChannel> {
 
     private static final StringDecoder DECODER = new StringDecoder();
     private static final StringEncoder ENCODER = new StringEncoder();
     
-    private static final TelnetHandler HANDLER = new TelnetHandler();
+    private final AuthenticationHandler authentication;
+    private final TelnetHandler telnet;
     
-    private final SslContext ssl;
+    private SslContext ssl = null;
     
-    public TelnetInitialiser(SslContext ssl) {
-        this.ssl = ssl;
+    @Inject
+    public TelnetInitialiser(AuthenticationHandler authentication, TelnetHandler handler) {
+        this.authentication = authentication;
+        this.telnet = handler;
     }
-    
-    public TelnetInitialiser() {
-        this(null);
+
+    public void setSsl(SslContext ssl) {
+        this.ssl = ssl;
     }
     
     @Override
@@ -41,7 +49,10 @@ public class TelnetInitialiser extends ChannelInitializer<SocketChannel> {
         pipeline.addLast(new DelimiterBasedFrameDecoder(8192, Delimiters.lineDelimiter()));
         pipeline.addLast(DECODER);
         pipeline.addLast(ENCODER);
-        pipeline.addLast(HANDLER);
+        
+        // Add handlers
+//        pipeline.addLast(authentication);
+        pipeline.addLast(telnet);
         
     }
     

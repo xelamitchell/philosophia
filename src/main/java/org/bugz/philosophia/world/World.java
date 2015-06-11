@@ -1,5 +1,7 @@
 package org.bugz.philosophia.world;
 
+import java.util.List;
+
 /**
  *
  * @author bugz
@@ -7,5 +9,7 @@ package org.bugz.philosophia.world;
 public class World {
     
     private String name;
+    
+    private List<Zone> zones;
     
 }

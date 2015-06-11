@@ -1,15 +1,15 @@
 package org.bugz.philosophia.server.telnet;
 
 import io.netty.bootstrap.ServerBootstrap;
-import io.netty.channel.EventLoopGroup;
-import io.netty.channel.nio.NioEventLoopGroup;
-import io.netty.channel.socket.nio.NioServerSocketChannel;
-import io.netty.handler.logging.LogLevel;
-import io.netty.handler.logging.LoggingHandler;
+import io.netty.channel.Channel;
+import io.netty.util.internal.logging.InternalLoggerFactory;
+import io.netty.util.internal.logging.Slf4JLoggerFactory;
+import java.net.InetSocketAddress;
 import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+import javax.inject.Inject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 /**
@@ -22,35 +22,30 @@ public class TelnetServer {
     
     private static final Logger logger = LoggerFactory.getLogger(TelnetServer.class);
     
-    @Value("${quill.port:0}")
-    private Integer port;
+    private final ServerBootstrap bootstrap;
+    private final InetSocketAddress address;
     
-    @PostConstruct
-    public void initialise() {
-        this.run();
+    private Channel server;
+    
+    @Inject
+    public TelnetServer(ServerBootstrap bootstrap, InetSocketAddress address) {
+        this.bootstrap = bootstrap;
+        this.address = address;
     }
     
-    public void run() {
+    @PostConstruct
+    public void start() throws InterruptedException {
         
-        EventLoopGroup producer = new NioEventLoopGroup(1);
-        EventLoopGroup consumer = new NioEventLoopGroup();
+        InternalLoggerFactory.setDefaultFactory(new Slf4JLoggerFactory());
         
-        try {
-            
-            ServerBootstrap bootstrap = new ServerBootstrap();
-            bootstrap.group(producer, consumer)
-                .channel(NioServerSocketChannel.class)
-                .handler(new LoggingHandler(LogLevel.INFO))
-                .childHandler(new TelnetInitialiser());
-        
-            bootstrap.bind(port).sync().channel().closeFuture().sync();
-        } catch (InterruptedException ie) {
-            logger.warn("Interrupted.", ie);
-        } finally {
-            producer.shutdownGracefully();
-            consumer.shutdownGracefully();
-        }
-        
+        logger.info("Starting telnet...");
+        server = bootstrap.bind(address).sync().channel().closeFuture().sync().channel();
+    }
+    
+    @PreDestroy
+    public void stop() {
+        logger.info("Stopping telnet...");
+        server.close();
     }
     
 }

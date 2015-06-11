@@ -1,4 +1,4 @@
-package org.bugz.philosophia.symbol;
+package org.bugz.philosophia.parser.symbol;
 
 /**
  *

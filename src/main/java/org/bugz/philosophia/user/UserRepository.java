@@ -18,7 +18,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
      * @param username must not be null
      * @return 
      */
-    @Query("FROM User u WHERE u.username = :username AND u.status NOT LIKE 'DELETED'")
+    @Query("FROM User u WHERE u.username = :username")
     User findOne(@Param("username") String username);
     
     /**

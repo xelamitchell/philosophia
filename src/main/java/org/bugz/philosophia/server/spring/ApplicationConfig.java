@@ -1,5 +1,9 @@
 package org.bugz.philosophia.server.spring;
 
+import io.netty.bootstrap.ServerBootstrap;
+import io.netty.channel.nio.NioEventLoopGroup;
+import org.bugz.philosophia.server.telnet.TelnetHandler;
+import org.bugz.philosophia.server.telnet.TelnetInitialiser;
 import org.bugz.philosophia.server.telnet.TelnetServer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -22,11 +26,6 @@ public class ApplicationConfig {
     @Bean
     public PersistenceAnnotationBeanPostProcessor persistenceAnnotationBeanPostProcessor() {
         return new PersistenceAnnotationBeanPostProcessor();
-    }
-    
-    @Bean
-    public TelnetServer telnet() {
-        return new TelnetServer();
     }
     
 }

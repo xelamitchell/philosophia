@@ -2,7 +2,6 @@ package org.bugz.philosophia.form;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
-import org.bugz.philosophia.form.Form;
 
 /**
  * A user's Form.
@@ -19,12 +18,12 @@ public class Pc extends Form {
         super();
     }
     
-    public Pc(String name, Integer knowledge, Integer reality, Integer willpower) {
-        super(name, knowledge, reality, willpower);
+    public Pc(String name, String description, Integer iteration, Integer knowledge, Integer reality, Integer willpower) {
+        super(name, description, iteration, knowledge, reality, willpower);
     }
     
     public Pc(String name) {
-        this(name, 0, 0, 0);
+        this(name, "", 4, 0, 0, 0);
     }
     
 }

@@ -18,7 +18,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
      * @param username must not be null
      * @return 
      */
-    @Query("FROM User u WHERE u.username = :username")
+    @Query("FROM User u WHERE u.credentials.username = :username")
     User findOne(@Param("username") String username);
     
     /**
@@ -27,7 +27,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
      * @param username must not be null
      * @return 
      */
-    @Query("SELECT CASE WHEN COUNT(u) > 0 THEN 'true' ELSE 'false' END FROM User u WHERE u.username = :username")
+    @Query("SELECT CASE WHEN COUNT(u) > 0 THEN 'true' ELSE 'false' END FROM User u WHERE u.credentials.username = :username")
     Boolean exists(@Param("username") String username);
     
 }

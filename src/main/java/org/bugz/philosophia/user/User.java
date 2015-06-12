@@ -3,7 +3,7 @@ package org.bugz.philosophia.user;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -27,20 +27,16 @@ public class User implements Serializable {
     @GeneratedValue
     private Long id;
     
-    @Column
-    private String username;
-    
-    @Column
-    private String password;
+    @Embedded
+    private Credentials credentials;
     
     @Transient
     private List<Pc> forms;
 
     protected User() {}
     
-    public User(String username, String password, List<Pc> forms) {
-        this.username = username;
-        this.password = password;
+    public User(Credentials credentials, List<Pc> forms) {
+        this.credentials = credentials;
         this.forms = (CollectionUtils.isNotEmpty(forms)) ? forms : new ArrayList<>(0);
     }
     
@@ -52,20 +48,20 @@ public class User implements Serializable {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public Credentials getCredentials() {
+        return credentials;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setCredentials(Credentials credentials) {
+        this.credentials = credentials;
+    }
+
+    public String getUsername() {
+        return credentials.getUsername();
     }
 
     public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
+        return credentials.getPassword();
     }
 
     public List<Pc> getForms() {
